@@ -1,0 +1,23 @@
+<hibernate-configuration xmlns="http://www.hibernate.org/xsd/orm/cfg">
+    <session-factory>
+        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/practise</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">1234</property>
+
+        <!--  How to generate SQL that compatible with MySQL      -->
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</property>
+
+        <property name="hibernate.show_sql">true</property>
+
+        <!--validate: Verify the schema matches the entity classes
+            update: Update the schema to match entities (adds columns, doesn’t drop)
+            create: Drop and re-create schema on every run (data lost!)
+            create-drop: Same as create, but also drops on shutdown
+            none: Do nothing
+            💡 Use update during dev, validate or none in production -->
+        <property name="hibernate.hbm2ddl.auto">create</property>
+
+
+    </session-factory>
+</hibernate-configuration>
