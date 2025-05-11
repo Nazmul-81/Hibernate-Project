@@ -1,7 +1,7 @@
 <hibernate-configuration xmlns="http://www.hibernate.org/xsd/orm/cfg">
     <session-factory>
         <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/practise</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/hibernate_practise</property>
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password">1234</property>
 
@@ -17,6 +17,9 @@
             none: Do nothing
             💡 Use update during dev, validate or none in production -->
         <property name="hibernate.hbm2ddl.auto">create</property>
+
+        <!-- FORCE HIBERNATE TO USE YOUR @TableGenerator SETTINGS -->
+        <property name="hibernate.id.new_generator_mappings">false</property>
 
 
     </session-factory>
