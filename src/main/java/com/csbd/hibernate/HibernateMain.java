@@ -71,7 +71,7 @@ public class HibernateMain {
             if(student != null) {
                 student.setName(name);
                 student.setAge(age);
-                // Works for detached or non-detached object
+                // Works for detached (Has valid primary key (id!=0) and associated with a session) or non-detached object
                 // Safe use in modern apps
                 // This works for object that is connected to another session but update need detached object
                 // Update throw error if it gets and update object without modification
