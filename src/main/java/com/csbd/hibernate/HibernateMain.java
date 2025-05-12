@@ -38,6 +38,7 @@ public class HibernateMain {
             // Some transaction will not persist without commit (insert/update)
             session.beginTransaction();
 
+            // Object is in a Transient state
             Student student = new Student(name, age);
 
             // Hibernate queues an insert query
@@ -45,6 +46,7 @@ public class HibernateMain {
             // No ID return but save returns ID
             // JPA standard but save Hibernate specific
             session.persist(student);
+            // Object in a persistence state when call save/persist/get
 
             // Hibernate sends SQL to MySQL, JDBC executes the query
             session.getTransaction().commit();
@@ -72,6 +74,7 @@ public class HibernateMain {
                 // Works for detached or non-detached object
                 // Safe use in modern apps
                 // This works for object that is connected to another session but update need detached object
+                // Update throw error if it gets and update object without modification
                 session.merge(student);
             }
             session.getTransaction().commit();
@@ -85,9 +88,10 @@ public class HibernateMain {
             Student student = session.get(Student.class, id);
             if(student != null) {
 
-                // Need attached to session
+                // Need attached to session but delete works also on detached object
                 // JPA standard but delete Hibernate standard
                 session.remove(student);
+                // Mark for deletion
             }
             session.getTransaction().commit();
         }
